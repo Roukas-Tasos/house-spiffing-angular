@@ -1,0 +1,97 @@
+<div class="text-warning text-center">
+  <h3>Register as a user and explore the vast possibilities of this application!</h3>
+</div>
+
+  @if (registrationStatus.message === "Not attempted yet") {
+  <div class="d-flex flex-column mt-2 gap-2 align-items-center">
+  <form [formGroup]="form" class="d-flex flex-column w-50">
+    <mat-form-field>
+      <mat-label>First Name:</mat-label>
+      <input matInput type="text" formControlName="firstname">
+      <mat-error>First name is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Last Name:</mat-label>
+      <input matInput type="text" formControlName="lastname">
+      <mat-error>Last name is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Username:</mat-label>
+      <input matInput type="text" formControlName="username"
+        placeholder="user@example.com">
+        
+        <!-- (blur)="check_duplicate_email()"> -->
+      <!-- @if(form.get("username")?.hasError("duplicateEmail")) {
+        <mat-error>Email is already in use</mat-error>
+      } @else {
+        <mat-error>Username must be an email</mat-error>
+      } -->
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Password:</mat-label>
+      <input matInput type="text" formControlName="password">
+      <mat-error>Password must be at least 6 characters including letters, numbers and special characters</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Confirm Password:</mat-label>
+      <input matInput type="text" formControlName="confirmPassword">
+      @if(form.get("confirmPassword")?.hasError("passwordMismatch")) {
+        <mat-error>Passwords do not match</mat-error>
+      } @else {
+        <mat-error>Confirm password is required</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Date Of Birth:</mat-label>
+      <input matInput type="text" formControlName="dateOfBirth" placeholder="YYYY-MM-DD">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Gender:</mat-label>
+      <input matInput type="text" formControlName="gender">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Role:</mat-label>
+      <input matInput type="text" formControlName="role">
+      <mat-error>Role selection is required</mat-error>
+      <!-- <mat-label formControlName="role">
+        <mat-option>ADMIN</mat-option>
+        <mat-option>MEMBER</mat-option>
+      </mat-label> -->
+    </mat-form-field>
+
+    <button mat-flat-button color="warn"
+    (click)="onSubmit(form.value)"
+    [disabled]="form.invalid">
+    Register
+    </button>
+  </form>
+  
+  <button mat-flat-button color="warn" class="mt-2" data-toggle="dropdown" (click)="resetForm()">
+    Reset Form
+  </button>
+
+  </div>
+} @else {
+  @if (registrationStatus.success) {
+    <div class="alert alert-success mt-2 w-50">
+      <strong>Success:</strong> {{registrationStatus.message}}
+    </div>
+  } @else {
+    <div class="alert alert-danger mt-2 w-50">
+      <strong>Error:</strong> {{registrationStatus.message}}
+    </div>
+
+    <button mat-flat-button color="primary" class="mt-2" data-toggle="dropdown" (click)="registerAnother()">
+      Register another user
+    </button>
+  }
+  
+}
+

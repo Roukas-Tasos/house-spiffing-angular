@@ -1,0 +1,14 @@
+<nav class="navbar navbar-expand-lg bg-body-dark">
+  <div class="container-fluid">
+    <p class="text-warning h1" routerLink="/category">Categories</p>
+    <div class="d-flex gap-2 navbar-nav navbar-row justify-content-center">
+      <a class="nav-link text-warning" routerLink="/category-create"
+          [routerLinkActive]="['active']">Create a new category</a>
+      <a class="nav-link text-warning" routerLink="/category-read"
+          [routerLinkActive]="['active']">Browse the categories</a>
+      <a class="nav-link text-warning" routerLink="/category-update"
+          [routerLinkActive]="['active']">Update a category</a>
+    </div>
+  </div>
+
+</nav>

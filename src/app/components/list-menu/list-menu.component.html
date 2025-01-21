@@ -1,0 +1,10 @@
+<div class="list-group bg-dark bg-gradient text-info text-center d-flex flex-column">
+  @for (entry of menu; track entry){
+    <a class="list-group-item list-group-item-action list-group-item-warning"
+        [routerLink] = "entry.routerLink"
+        [routerLinkActive] = "['active']"
+    >{{entry.text}}</a>
+  }
+</div>
+
+

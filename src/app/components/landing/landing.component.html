@@ -1,0 +1,24 @@
+<div class="container-fluid bg-dark bg-gradient text-info text-center position-sticky">
+  <div class="row">
+
+  <h1>Welcome to <strong>{{title}}</strong></h1>
+  <h4>The perfect way to manage your chores for a sparkling clean house.</h4>
+  <h4>Organize your house chores efficiently and effortlessly.</h4>
+
+  <div class="">
+  @if(user()){
+    <span class="me-3 d-flex gap-2 text-light">
+      <!-- Welcome, {{user().fullname}} -->
+      <mat-icon role="button" (click)="logout()">logout</mat-icon>
+    </span>
+  } @else {
+    <span class="me-2 d-flex flex-grow-1 ap-2">
+      Login
+      <mat-icon role="button" class="icon-link-hover fs-4" routerLink="user-login">
+        login
+      </mat-icon>
+    </span>
+  }
+  </div>
+</div>
+</div>

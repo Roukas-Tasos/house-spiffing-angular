@@ -1,0 +1,70 @@
+<div class="d-flex flex-column gap-2 text-warning">
+  <app-category-navbar></app-category-navbar>
+  <div class="text-wrap">
+    <h3>Update a category</h3>
+  </div>
+
+  <form [formGroup]="searchForm" (ngSubmit)="search()">
+    <div class="d-flex gap-2">
+      <input type="text" formControlName="search" placeholder="Enter Category Name">
+      <button mat-raised-button type="submit">Search</button>
+    </div>
+  </form>
+
+  <form [formGroup]="form" class="d-flex flex-column gap-3">
+
+    <mat-form-field [style.width.px]=100>
+      <mat-label>Id:</mat-label>
+      <input matInput type="text" formControlName="id">
+      <mat-error>Id is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field [style.width.px]=250>
+      <mat-label>Name:</mat-label>
+      <input matInput type="text" formControlName="name">
+      <mat-error>Name is required</mat-error>
+    </mat-form-field>
+    
+    <mat-form-field>
+      <mat-label>Description:</mat-label>
+      <input matInput type="text" formControlName="description">
+      <mat-error>Description is required</mat-error>
+    </mat-form-field>
+
+    <div formArrayName="chores">
+      @for(chore of chores.controls; let i = $index; track i){
+      <div [formGroupName]="i" class="d-flex gap-3 align-items-center">
+      <mat-form-field>
+        <mat-label>Id:</mat-label>
+        <input matInput formControlName="id" type="text">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Name:</mat-label>
+        <input matInput formControlName="name" type="text">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Description:</mat-label>
+        <input matInput formControlName="description" type="text">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Due Date:</mat-label>
+        <input matInput formControlName="dueDate" type="text">
+      </mat-form-field>
+
+      <mat-icon role="button" class="cursor-pointer" (click) = addChore()>add</mat-icon>
+      <mat-icon role="button" class="cursor-pointer" (click)= removeChore(i)>delete</mat-icon>
+      </div>
+    }
+    </div>
+
+    <div class="d-flex gap-5">
+      <button mat-raised-button color="warn" [disabled]="form.invalid" (click)="onSubmit(form.value)">
+       Submit
+      </button>
+      <button mat-raised-button color="warn" (click)="form.reset()">Reset</button>
+    </div>
+  </form>
+</div>
