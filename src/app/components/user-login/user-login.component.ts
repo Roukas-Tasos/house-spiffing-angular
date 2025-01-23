@@ -41,7 +41,7 @@ export class UserLoginComponent {
             fullname: decodedTokenSubject,
             username: decodedTokenSubject
           })
-        this.router.navigate(['restricted-content']);
+        this.router.navigate(['category-read']);
       },
       error: (error) => {
         console.log('Login failed', error);

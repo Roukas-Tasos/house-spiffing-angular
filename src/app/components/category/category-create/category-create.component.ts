@@ -31,6 +31,7 @@ export class CategoryCreateComponent {
       })
     ])
   })
+  
   chores = this.form.get('chores') as FormArray;
   
     removeChore(index:number){

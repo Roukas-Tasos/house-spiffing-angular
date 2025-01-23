@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { CategoryNavbarComponent } from '../category-navbar/category-navbar.component';
 import { CategoryService } from '../../../shared/services/category.service';
-import { Category } from '../../../shared/interfaces/category';
+import { CategoryUpdateDTO } from '../../../shared/interfaces/category';
 import { FormGroup, FormControl, ReactiveFormsModule, Validators, FormArray } from '@angular/forms';
 import {MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
@@ -9,8 +9,6 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatIcon } from '@angular/material/icon';
-import { Chore } from '../../../shared/interfaces/chore';
-import { ChoreService } from '../../../shared/services/chore.service';
 
 @Component({
   selector: 'app-category-update',
@@ -22,6 +20,7 @@ export class CategoryUpdateComponent {
 
   CategoryService = inject(CategoryService);
   getCategory = '';
+  categoryId = '';
 
   ngOnInit(){
     this.CategoryService.getCategory()
@@ -35,7 +34,6 @@ export class CategoryUpdateComponent {
   })
 
   form = new FormGroup({
-    id: new FormControl('', Validators.required),
     name: new FormControl('', Validators.required),
     description: new FormControl('', Validators.required),
     chores: new FormArray([
@@ -57,23 +55,28 @@ export class CategoryUpdateComponent {
   addChore(){
     this.chores.push(
       new FormGroup({
-        id: new FormControl('', Validators.required),
-        name: new FormControl('', Validators.required),
+        id: new FormControl(''),
+        name: new FormControl(''),
         description: new FormControl(''),
-        dueDate: new FormControl('', Validators.required)
+        dueDate: new FormControl('')
       })
     )
   }
 
   onSubmit(value:any) {
     console.log(value);
-    const category: Category = {
-      id: this.form.get('id')?.value || '',
+    const category: CategoryUpdateDTO = {
+      id: this.categoryId,
       name: this.form.get('name')?.value || '',
       description: this.form.get('description')?.value || '',
-      chores: this.form.get('chores')?.value || []
+      chores: this.form.get('chores')?.value || [{
+        id: this.form.get('id')?.value || '',
+        name: this.form.get('name')?.value || '',
+        description: this.form.get('description')?.value || '',
+        dueDate: this.form.get('dueDate')?.value || ''
+      }]
     }
-    this.CategoryService.registerCategory(category).subscribe({
+      this.CategoryService.updateCategory(category).subscribe({
       next: (response) => {
         console.log("No Errors", response)
         this.registrationStatus = {success: true, message: "Category registered successfully!"}
@@ -94,8 +97,8 @@ export class CategoryUpdateComponent {
     const searchValue = this.searchForm.controls.search.value!
     this.CategoryService.getCategoryByName(searchValue).subscribe((category) => {
       console.log(category)
+      this.categoryId = category.id;
       this.form.patchValue({
-        id: category.id,
         name: category.name,
         description: category.description
       })

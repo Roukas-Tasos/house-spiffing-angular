@@ -1,0 +1,23 @@
+<div class="d-flex flex-column gap-2 text-warning text-center">
+  <app-chore-navbar></app-chore-navbar>
+  <div class="text-wrap">
+    <h2>Browse chores</h2>
+    <h3 class="text-warning">This is the list of chores to choose from and organize your <strong>House Spiffing!</strong></h3>
+  </div>
+  
+    <mat-list>
+      <div class="d-flex flex-column gap-2">
+      @for(chore of chores; let i = $index; track i) {
+        <mat-list-item>
+         <span matListItemTitle class="text-info text-uppercase fs-2 fw-bold fst-italic">{{chore.name}}</span>
+         <span matListItemLine>{{chore.description}}</span>
+       </mat-list-item>
+        <mat-list-item><span matListItemLine>Due Date: {{chore.dueDate}}</span></mat-list-item>     
+       }
+       <mat-action-list>
+        <button mat-raised-button>Update</button>
+        <!-- <button mat-raised-button (click)="onDelete(form.value)">Delete</button> -->
+      </mat-action-list>
+      </div>
+    </mat-list>
+  </div>

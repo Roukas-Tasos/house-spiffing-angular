@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Category, CategoryCreateDTO, CategoryDeleteDTO } from '../interfaces/category';
+import { Category, CategoryCreateDTO, CategoryDeleteDTO, CategoryUpdateDTO } from '../interfaces/category';
 import { environment } from '../../../environments/environment.development';
 
 const CATEGORIES_URL = 'http://localhost:8080/api/categories';
@@ -24,11 +24,17 @@ export class CategoryService {
       return this.http.post<{msg:string}>(`${CATEGORIES_URL}/save`, category)
     }
 
-  getCategoryByName(name: string){
+  updateCategory(category : CategoryUpdateDTO) {
+    return this.http.put<{msg: string}>(`${CATEGORIES_URL}/update/${category.id}`, category)
+  }
+
+  getCategoryByName(name : string){
     return this.http.get<Category>(`${CATEGORIES_URL}/by-name/${name}`)
   }
 
-  deleteCategory(id: CategoryDeleteDTO) {
-    return this.http.delete<{msg:string}>(`${CATEGORIES_URL}/${id}`)
+  deleteCategory(category: CategoryDeleteDTO) {
+    return this.http.delete<Category>(`${CATEGORIES_URL}/delete/${category}`)
   }
+
+
 }

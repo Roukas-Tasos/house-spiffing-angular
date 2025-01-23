@@ -1,70 +1,27 @@
 <div class="d-flex flex-column gap-2 text-warning text-center">
   <app-category-navbar></app-category-navbar>
   <div class="text-wrap">
-    <h3>Browse the categories</h3>
+    <h3>Browse categories</h3>
   </div>
-
-  <!-- <form [formGroup]="searchForm" (ngSubmit)="search()">
-    <div class="d-flex gap-2">
-      <input type="text" formControlName="search" placeholder="Enter Category Id">
-      <button mat-raised-button type="submit">Search</button>
-    </div>
-  </form> -->
   
     <mat-list>
       <div class="d-flex flex-column gap-2">
       @for(category of categories; let i = $index; track i) {
         <mat-list-item>
-         <span matListItemTitle>{{category.name}}</span>
-         <span matListItemLine>{{category.description}}</span>
+         <span matListItemTitle class="text-info text-uppercase fs-2 fw-bold fst-italic" formControlName="name">{{category.name}}</span>
+         <span matListItemLine class="">{{category.description}}</span>
        </mat-list-item>
       @for(chore of category.chores; let j = $index; track j) {
       <mat-list-item>
-        <span>{{chore.name}}</span>
+        <span matListItemLine>{{chore.name}}</span>
       </mat-list-item>
-        <mat-list-item><span>{{chore.description}}</span></mat-list-item>
-        <mat-list-item><span>{{chore.dueDate}}</span></mat-list-item>    
-      <mat-action-list>
-        <button mat-list-item>Update</button>
-        <button mat-list-item>Delete</button>
+        <mat-list-item><span matListItemLine>{{chore.description}}</span></mat-list-item>
+        <mat-list-item><span matListItemLine>Due Date: {{chore.dueDate}}</span></mat-list-item>     
+       } 
+       <mat-action-list>
+        <button mat-raised-button>Delete</button>
       </mat-action-list>
-       }  }            
+      }            
       </div>
     </mat-list>
-  
-
-  <!-- <form [formGroup]="searchForm" >
-    <div class="d-flex gap-2">
-      <input type="text" formControlName="search" placeholder="Enter Category Id">
-      <button mat-raised-button type="submit">Search</button>
-    </div>
-  </form>
-
-  <form [formGroup]="form" class="d-flex flex-column gap-3">
-
-    <mat-form-field [style.width.px]=100>
-      <mat-label>Id:</mat-label>
-      <input matInput type="text" formControlName="id">
-    </mat-form-field>
-
-    <mat-form-field [style.width.px]=250>
-      <mat-label>Name:</mat-label>
-      <input matInput type="text" formControlName="name">
-    </mat-form-field>
-
-    
-    <mat-form-field>
-      <mat-label>Description:</mat-label>
-      <input matInput type="text" formControlName="description">
-    </mat-form-field>
-
-    <div class="d-flex gap-5">
-      <button mat-raised-button color="warn" [disabled]="form.invalid">
-       Delete
-      </button>
-      <button mat-raised-button color="warn" (click)="form.reset()">Reset</button>
-    </div>
-  </form> -->
-
-
-</div>
+  </div>

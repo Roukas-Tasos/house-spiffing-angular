@@ -1,14 +1,13 @@
 import { Chore } from "./chore";
 
 export interface Category {
-  id: string;
+  id: string ;
   name: string;
   description: string;
   chores: Chore[];
 }
 
 export interface CategoryCreateDTO {
-
   name: string;
   description: string;
   chores: Chore[];
@@ -16,4 +15,14 @@ export interface CategoryCreateDTO {
 
 export interface CategoryDeleteDTO {
   id: string;
+  name: string;
+  description: string;
+  chores: Chore[];
+}
+
+export interface CategoryUpdateDTO {
+  id: string;
+  name: string;
+  description: string;
+  chores: Chore[];
 }

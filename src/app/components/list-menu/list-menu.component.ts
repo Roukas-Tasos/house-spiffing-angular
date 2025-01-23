@@ -11,10 +11,9 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 export class ListMenuComponent {
 
   menu : MenuEntry[] = [
-    {text: "Users", routerLink: "users"},
+    {text: "User Registration", routerLink: "user"},
     {text: "Category", routerLink: "category"},
-    {text: "Chores", routerLink: "chores"},
-    {text: "Restricted Content", routerLink: "restricted-content"},
+    {text: "Chore", routerLink: "chore"},
     {text: "User Login", routerLink: "user-login"}
   ]
 }

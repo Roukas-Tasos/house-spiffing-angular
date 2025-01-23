@@ -1,0 +1,13 @@
+<nav class="navbar navbar-expand-lg bg-body-dark">
+  <div class="container-fluid">
+    <p class="text-warning h1" routerLink="/chore">Chores</p>
+    <div class="d-flex gap-2 navbar-nav navbar-row justify-content-center">
+      <a class="nav-link text-warning" routerLink="/chore-create"
+          [routerLinkActive]="['active']">Create a new chore</a>
+      <a class="nav-link text-warning" routerLink="/chore-read"
+          [routerLinkActive]="['active']">Browse chores</a>
+      <a class="nav-link text-warning" routerLink="/chore-update"
+          [routerLinkActive]="['active']">Update a chore</a>
+    </div>
+  </div>
+</nav>
