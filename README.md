@@ -2,7 +2,7 @@
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.2.
 
-Backend repository is https://github.com/Roukas-Tasos/house-spiffing-app/tree/main.
+Backend repository is https://github.com/Roukas-Tasos/house-spiffing-app.
 
 ## Development server
 
